@@ -56,6 +56,10 @@ public class RecursiveDescendentParser extends Parser {
 
     @Override
     public boolean canApplyMethod() {
+        //
+        // verify it the recursive descendent method can be applied
+        // This method can be applied if the grammar haven't any left recursive production
+        //
 
         for(NonTerminal parent : grammar.getNonTerminals()){
             LinkedList<NonTerminal> queue = new LinkedList<>();
@@ -182,7 +186,7 @@ public class RecursiveDescendentParser extends Parser {
             }
         }
         if( configuration.state == CONFIGURATION_STATE.ERROR)
-            return "";
+            return "Programul are o eroare sintactica";
 
         List<String> strings = new ArrayList<>();
         strings.add("<S>");

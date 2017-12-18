@@ -27,8 +27,14 @@ public abstract class Parser {
 
     public String scanSequence(String data) throws ParserException{
         String[] parts = data.split(" ");
-
         List<Element> input = new ArrayList<>();
+
+        if(grammar == null)
+            throw  new ParserException("Read a valid grammar first!");
+
+        //
+        // splitting input string into terminals
+        //
         for(String part : parts){
             part = part.trim();
             if(part .isEmpty())
@@ -41,6 +47,10 @@ public abstract class Parser {
 
             input.add(new Terminal(part));
         }
+
+        //
+        // scanning sequence
+        //
         return scanSequence(input);
     }
 
@@ -66,7 +76,6 @@ public abstract class Parser {
 
         return grammar.getTerminal(data);
     }
-
 
 
     private NonTerminal parseNonTerminal(String data){

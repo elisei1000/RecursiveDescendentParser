@@ -11,28 +11,40 @@ public class Main {
 
     public static void main(String[] args){
         Parser parser = new RecursiveDescendentParser();
+
+        try{
+            parser.readGrammar("course");
+            System.out.println("Read course grammar ok.");
+            if(parser.canApplyMethod()){
+                System.out.println("Can apply method!");
+                System.out.println(parser.scanSequence("a c c"));
+            }
+            else{
+                System.out.println("Cannot apply parser method!");
+            }
+        } catch (ParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         try {
             parser.readGrammar(
                     "ourHomework.txt"
-                    //"course"
             );
+            System.out.println("Read my grammar ok. ");
+            if(parser.canApplyMethod()){
+                System.out.println("Can apply method: True");
+                System.out.println(parser.scanSequenceFromFile("file"));
+            }
+            else{
+                System.out.println("Cannot apply method.");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParserException e) {
             e.printStackTrace();
         }
-
-        System.out.println(parser.canApplyMethod());
-
-        try {
-            System.out.println(parser.scanSequence("c"));;
-
-            System.out.println(parser.scanSequenceFromFile("file"));
-        } catch (ParserException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 }
