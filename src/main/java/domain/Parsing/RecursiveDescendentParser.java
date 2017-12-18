@@ -68,6 +68,14 @@ public class RecursiveDescendentParser extends Parser {
             visited.add(parent);
             queue.add(parent);
 
+            //
+            // verificam daca pornind de la nonterminal putem ajunge recursiv la stanga tot la el
+            // A -> A sau
+            // A -> B
+            // B -> C
+            // C -> A
+            //
+
             while(!recursive && queue.size() > 0){
                 NonTerminal firstQueueNonTerminal = queue.pop();
                 for(Production prod: firstQueueNonTerminal.getProductionList()){
