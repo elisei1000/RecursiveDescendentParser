@@ -23,14 +23,16 @@ public abstract class Parser {
 
     public abstract boolean canApplyMethod();
 
-    protected abstract void scanSequence(List<Element> input);
+    protected abstract String scanSequence(List<Element> input);
 
-    public void scanSequence(String data) throws ParserException{
+    public String scanSequence(String data) throws ParserException{
         String[] parts = data.split(" ");
 
         List<Element> input = new ArrayList<>();
         for(String part : parts){
             part = part.trim();
+            if(part .isEmpty())
+                 continue;
             if(!terminalPattern.matcher(part).matches())
                 throw new ParserException(String.format(
                         "Invalid terminal: %s",
@@ -39,14 +41,13 @@ public abstract class Parser {
 
             input.add(new Terminal(part));
         }
-
-        scanSequence(input);
+        return scanSequence(input);
     }
 
-    public void scanSequenceFromFile(String filename) throws IOException, ParserException {
+    public String scanSequenceFromFile(String filename) throws IOException, ParserException {
         String data;
         data = FileUtils.readFile(filename);
-        scanSequence(data);
+        return scanSequence(data);
     }
 
 

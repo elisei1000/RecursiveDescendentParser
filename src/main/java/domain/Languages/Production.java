@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Production {
 
-    private List<Element> elementList;
+    private ArrayList<Element> elementList;
     private NonTerminal parent;
 
 
@@ -23,7 +23,7 @@ public class Production {
         this.elementList.add(e);
     }
 
-    public List<Element> getElementList() {
+    public ArrayList<Element> getElementList() {
         return elementList;
     }
 

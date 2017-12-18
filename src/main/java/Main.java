@@ -11,15 +11,28 @@ public class Main {
 
     public static void main(String[] args){
         Parser parser = new RecursiveDescendentParser();
-
         try {
-            parser.readGrammar("ourHomework.txt");
+            parser.readGrammar(
+                    "ourHomework.txt"
+                    //"course"
+            );
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParserException e) {
             e.printStackTrace();
         }
 
+        System.out.println(parser.canApplyMethod());
+
+        try {
+            System.out.println(parser.scanSequence("c"));;
+
+            System.out.println(parser.scanSequenceFromFile("file"));
+        } catch (ParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

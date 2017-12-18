@@ -35,4 +35,11 @@ public class NonTerminal extends Element {
     public String toString(){
         return String.format("%s(%s)", "NonTerminal", value);
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(o!= null && o instanceof NonTerminal)
+            return ((NonTerminal) o).getValue().equals(this.value);
+        return false;
+    }
 }

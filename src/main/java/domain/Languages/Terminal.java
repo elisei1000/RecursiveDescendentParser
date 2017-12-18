@@ -28,4 +28,12 @@ public class Terminal extends Element {
                 (value == null)?"empty":value);
     }
 
+    @Override
+    public boolean equals(Object c){
+        if(c instanceof Terminal){
+            return ((Terminal) c).value.equals(this.value);
+        }
+        return false;
+    }
+
 }
